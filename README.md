@@ -53,6 +53,14 @@ For Codespaces:
 
 - The `setup.sh` script will automatically execute upon starting your Codespace, as configured in `.devcontainer/devcontainer.json`.
 
+### Rust Version Configuration
+
+The script `setup.sh` configures the environment to use Rust version `1.74.0` by default. If you need to use a different Rust version for your project, you can easily specify this by running the setup script with the desired version number as an argument. For example, to set up Rust version `1.55.0`, you would use the following command:
+
+```bash
+./setup.sh 1.55.0
+```
+
 ## Features
 
 This Rust project template comes with several pre-configured features designed to to kickstart development, enhance code quality, and ensure a consistent coding environment.
