@@ -1,6 +1,6 @@
 # Rust Project Template
 
-This repository serves as a template for new Rust projects.
+Welcome to our Rust Project Template! This template is designed to make starting a new Rust project as easy as possible. It includes everything you need to get going quickly, including setup scripts, essential tools, and basic configuration files like README.md.template and LICENSE.template. The goal is to help you focus on writing your Rust code without worrying about the initial setup.
 
 ## Table of Contents
 
@@ -8,6 +8,8 @@ This repository serves as a template for new Rust projects.
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
 - [Usage](#usage)
+  - [Local Setup](#local-setup)
+  - [Using Codespaces](#using-codespaces)
 - [Features](#features)
 - [Contributing](#contributing)
 - [License](#license)
@@ -17,32 +19,73 @@ This repository serves as a template for new Rust projects.
 
 ### Prerequisites
 
-Before using, ensure you have the following tool(s) enabled:
+Before beginning, ensure you have installed:
 
 - Git
-- Git Copilot
+- GitHub Copilot (optional, but recommended for enhanced coding assistance)
+
+### Setup
+
+To use this template, follow these steps:
+
+1. Navigate to the [rust-project-template](https://github.com/rbbozkurt/rust-project-template) on GitHub.
+2. Click the "Use this template" button located at the top-right of the page.
+   ![image](https://github.com/rbbozkurt/rust-project-template/assets/45459787/688f02f1-6c7d-456f-b4b1-865213a4bbc5)
+
+
+3. Follow the prompts to create a new repository based on this template.
 
 ## Usage
 
-```bash
-make help
-```
+### Local Setup
+
+To set up the project locally:
+
+1. Open a terminal and navigate to the directory where you wish to clone the repository.
+2. Clone your new repository using `git clone https://github.com/<your-username>/<your-repo-name>`.
+3. Change into your repository's directory with `cd <your-repo-name>`.
+4. (Optional) Create and switch to a new branch with `git checkout -b <branch-name>`.
+5. Run `./setup.sh` to install necessary dependencies and perform initial setup.
+
+### Using Codespaces
+
+For Codespaces:
+
+- The `setup.sh` script will automatically execute upon starting your Codespace, as configured in `.devcontainer/devcontainer.json`.
 
 ## Features
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut ornare ipsum. Aenean aliquet fermentum aliquet. Quisque ac auctor lectus. Aliquam ac libero nulla. Proin ligula eros, posuere ac libero id, posuere rhoncus justo. Mauris dignissim est lacus, quis dignissim leo ultrices eu. Sed pretium pretium suscipit. In ut auctor neque, vitae scelerisque ligula. Cras aliquet nunc id molestie aliquam. Nam egestas libero hendrerit auctor efficitur. Suspendisse aliquet erat et nisi maximus molestie. Duis ex felis, rutrum ut tellus rhoncus, tempus dapibus metus. 
+
+This Rust project template comes with several pre-configured features designed to to kickstart development, enhance code quality, and ensure a consistent coding environment.
+
+- **Dev Container for Codespaces**: Provides a fully configured development environment with all necessary dependencies and tools. This feature enables developers to start coding immediately without worrying about local setup, making it ideal for collaborative projects and quick starts.
+
+- **Automated Rust Environment Setup**: The template automatically installs Rust, its compiler (`rustc`), the package manager (`cargo`), and other essential tools such as `rustfmt` for code formatting and `clippy` for linting. This ensures that every developer works with the same toolchain, reducing "works on my machine" issues.
+
+- **Pre-configured Clippy and Rustfmt**: Integrates Rust's official linting tool (`clippy`) and formatting tool (`rustfmt`) to enforce code quality and style consistency. This helps maintain high code standards and reduces time spent on code reviews related to style issues.
+
+- **Pre-commit Hooks**: Utilizes `pre-commit` hooks to automatically check and format code before commits, ensuring that all code complies with defined standards and preventing common errors from being committed to the repository.
+
+- **Continuous Integration (CI) Setup**: Includes a basic setup for Continuous Integration (CI) using GitHub Actions, automating tasks like building the project, running tests, and linting code on every push or pull request. This helps in identifying and resolving issues early in the development cycle.
+
+- **README and LICENSE Templates**: Includes `README.md.template` and `LICENSE.template` files to guide the creation of comprehensive project documentation and ensure proper licensing right from the start. The README template outlines how to structure project information, making it easier for new users to understand and contribute to the project. The LICENSE template provides a placeholder for legal protection and clarifies the terms under which the software can be used, modified, and distributed.
+  
+- **Extensible Template**: While this template provides a solid foundation for Rust projects, it's designed to be easily extensible. Developers can add more tools, libraries, and configurations as needed, making it suitable for projects of any scale.
+
+By leveraging these features, developers can focus more on building their applications and less on configuring and maintaining their development environment.
+
 
 ## Contributing
 
-Contributions to the < repo name > are welcome! Here's how you can contribute:
+Contributions are welcome! Here's how you can contribute:
 
-* Bug Reports: Notice a bug? Open an issue with a clear title and description.
-* Feature Requests: Have an idea for an improvement? I'd love to hear it. Open an issue to suggest new features.
-* Pull Requests: Want to contribute directly? Fork the repository, make your changes, and submit a pull request.
+- **Bug Reports**: If you notice a bug, please open an issue with a clear title and description.
+- **Feature Requests**: Have an idea for improvement? Feel free to open an issue to suggest new features.
+- **Pull Requests**: Direct contributions can be made by forking the repository, making your changes, and submitting a pull request.
 
-## License 
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
-For any questions or feedback, please contact resitberkaybozkurt@gmail.com.
+For questions or feedback, please contact [resitberkaybozkurt@gmail.com](mailto:resitberkaybozkurt@gmail.com).
