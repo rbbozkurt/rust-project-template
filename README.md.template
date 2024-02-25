@@ -1,6 +1,8 @@
-# Rust Project Template
+# < Actual Repo Name >
 
-This repository serves as a template for new Rust projects.
+This README.md template is intended to serve as base for your repository. 
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut ornare ipsum. Aenean aliquet fermentum aliquet. Quisque ac auctor lectus. Aliquam ac libero nulla. Proin ligula eros, posuere ac libero id, posuere rhoncus justo. Mauris dignissim est lacus, quis dignissim leo ultrices eu. Sed pretium pretium suscipit. In ut auctor neque, vitae scelerisque ligula. Cras aliquet nunc id molestie aliquam. Nam egestas libero hendrerit auctor efficitur. Suspendisse aliquet erat et nisi maximus molestie. Duis ex felis, rutrum ut tellus rhoncus, tempus dapibus metus. 
 
 ## Table of Contents
 
@@ -17,12 +19,24 @@ This repository serves as a template for new Rust projects.
 
 ### Prerequisites
 
-Before using, ensure you have the following tool(s) enabled:
+Before installing, ensure you have the following tools installed:
 
+- Rust and Cargo (latest stable version recommended)
 - Git
-- Git Copilot
 
+### Setup
+
+To set up the project on your local machine, follow these steps:
+
+```bash
+git clone https://github.com/<your_repo>
+cd <your_repo>
+git checkout -b <your_branch_name>
+./setup.sh
+```
 ## Usage
+
+To view all available commands and their descriptions, run:
 
 ```bash
 make help

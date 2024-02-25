@@ -3,12 +3,15 @@
 # Stop execution if any command fails
 set -e
 
+# Rust version parameter (default to 1.74.0 if not specified)
+RUST_VERSION="${1:-1.74.0}"
+
 # Function to check if a command is available
 command_exists() {
     command -v "$1" &>/dev/null
 }
 
-# Install Rust and set a specific version, if not already installed or set
+# Install Rust and set the specified version, if not already installed or set
 install_rust() {
     echo "Checking Rust installation..."
     if ! command_exists rustup; then
@@ -19,9 +22,9 @@ install_rust() {
         echo "Rust is already installed."
     fi
 
-    echo "Setting Rust to version 1.74.0..."
-    rustup install 1.74.0 || true  # Proceed if the version is already installed
-    rustup default 1.74.0
+    echo "Setting Rust to version $RUST_VERSION..."
+    rustup install "$RUST_VERSION" || true  # Proceed if the version is already installed
+    rustup default "$RUST_VERSION"
 }
 
 # Install Clippy and Rustfmt
