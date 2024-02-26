@@ -76,7 +76,9 @@ This Rust project template comes with several pre-configured features designed t
 - **Continuous Integration (CI) Setup**: Includes a basic setup for Continuous Integration (CI) using GitHub Actions, automating tasks like building the project, running tests, and linting code on every push or pull request. This helps in identifying and resolving issues early in the development cycle.
 
 - **README and LICENSE Templates**: Includes `README.md.template` and `LICENSE.template` files to guide the creation of comprehensive project documentation and ensure proper licensing right from the start. The README template outlines how to structure project information, making it easier for new users to understand and contribute to the project. The LICENSE template provides a placeholder for legal protection and clarifies the terms under which the software can be used, modified, and distributed.
-  
+
+- **Automated Documentation Deployment**: The `deploy_docs.yml` workflow in GitHub Actions automates the deployment of your project's documentation to GitHub Pages. Whenever changes are pushed to the main branch, the documentation is automatically built and deployed, ensuring that your project's documentation is always up-to-date with the latest codebase. This seamless integration enhances the project's maintainability and accessibility for both developers and users.
+
 - **Extensible Template**: While this template provides a solid foundation for Rust projects, it's designed to be easily extensible. Developers can add more tools, libraries, and configurations as needed, making it suitable for projects of any scale.
 
 By leveraging these features, developers can focus more on building their applications and less on configuring and maintaining their development environment.
