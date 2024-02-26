@@ -3,7 +3,7 @@ name: Deploy Docs
 on:
   push:
     branches:
-      - feature/add-doc-generate-workflow  # Set to  default branch
+      - main  # Set to  default branch
 
 jobs:
   build_and_deploy:
