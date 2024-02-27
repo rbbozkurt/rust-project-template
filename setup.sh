@@ -3,11 +3,32 @@
 # Stop execution if any command fails
 set -e
 
-# Rust version parameter (default to latest stable if not specified)
-RUST_VERSION="${1:-stable}"
+# Default versions
+DEFAULT_RUST_VERSION="1.74.0"
+DEFAULT_PYTHON_VERSION="3.10"
 
-# Python version parameter (default to 3.10 if not specified)
-PYTHON_VERSION="${2:-3.10}"
+# Initialize variables with default values
+RUST_VERSION="$DEFAULT_RUST_VERSION"
+PYTHON_VERSION="$DEFAULT_PYTHON_VERSION"
+
+# Function to display usage
+usage() {
+    echo "Usage: $0 [--rust <rust_version>] [--python <python_version>]"
+    exit 1
+}
+
+# Parse command-line options
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --rust) RUST_VERSION="$2"; shift ;;
+        --python) PYTHON_VERSION="$2"; shift ;;
+        *) usage ;;
+    esac
+    shift
+done
+
+# Rest of your setup script...
+echo "Setting up environment with Rust $RUST_VERSION and Python $PYTHON_VERSION"
 
 # Function to check if a command is available
 command_exists() {
