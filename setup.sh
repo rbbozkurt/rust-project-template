@@ -3,8 +3,11 @@
 # Stop execution if any command fails
 set -e
 
-# Rust version parameter (default to 1.74.0 if not specified)
-RUST_VERSION="${1:-1.74.0}"
+# Rust version parameter (default to latest stable if not specified)
+RUST_VERSION="${1:-stable}"
+
+# Python version parameter (default to 3.10 if not specified)
+PYTHON_VERSION="${2:-3.10}"
 
 # Function to check if a command is available
 command_exists() {
@@ -16,69 +19,82 @@ install_rust() {
     echo "Checking Rust installation..."
     if ! command_exists rustup; then
         echo "Rustup not found. Installing Rust..."
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
         source $HOME/.cargo/env
     else
         echo "Rust is already installed."
     fi
 
     echo "Setting Rust to version $RUST_VERSION..."
-    rustup install "$RUST_VERSION" || true  # Proceed if the version is already installed
+    rustup install "$RUST_VERSION"
     rustup default "$RUST_VERSION"
 }
 
 # Install Clippy and Rustfmt
 install_rust_tools() {
     echo "Installing Rust tools (clippy, rustfmt)..."
-    rustup component add clippy || true  # Proceed if clippy is already installed
-    rustup component add rustfmt || true  # Proceed if rustfmt is already installed
+    rustup component add clippy rustfmt
 }
 
-# Install Python 3 if not already installed
-install_python3() {
-    echo "Checking for Python3..."
-    if ! command_exists python3; then
-        echo "Python3 not found. Attempting to install..."
-        if command_exists apt-get; then
-            sudo apt-get update
-            sudo apt-get install -y python3
-        elif command_exists yum; then
-            sudo yum install -y python3
-        elif command_exists brew; then
-            brew install python3
+# Install pyenv for Python version management
+install_pyenv() {
+    echo "Checking for pyenv..."
+    if [ -d "$HOME/.pyenv" ]; then
+        echo "pyenv is already installed."
+    else
+        echo "pyenv not found. Installing pyenv..."
+        curl https://pyenv.run | bash
+    fi
+    # Add pyenv to PATH and initialize if not already done
+    if ! command_exists pyenv; then
+        export PATH="$HOME/.pyenv/bin:$PATH"
+        eval "$(pyenv init --path)"
+        eval "$(pyenv virtualenv-init -)"
+    fi
+}
+
+# Install Python using pyenv
+install_python() {
+    echo "Installing Python $PYTHON_VERSION using pyenv..."
+    pyenv install -s "$PYTHON_VERSION"
+    pyenv global "$PYTHON_VERSION"
+}
+
+# Install Pipenv using pip
+install_pipenv() {
+    echo "Installing Pipenv..."
+    pip install --user pipenv
+}
+
+# Create or update Pipfile with the specified Python version
+create_or_update_pipfile() {
+    if [ ! -f Pipfile ]; then
+        echo "Creating Pipfile with Python version $PYTHON_VERSION..."
+        pipenv --python "$PYTHON_VERSION"
+    else
+        echo "Pipfile exists. Checking Python version..."
+        # Extract the Python version from the Pipfile
+        PIPFILE_PYTHON_VERSION=$(grep 'python_version' Pipfile | cut -d '"' -f 2)
+        if [ "$PIPFILE_PYTHON_VERSION" != "$PYTHON_VERSION" ]; then
+            echo "Pipfile Python version ($PIPFILE_PYTHON_VERSION) differs from the specified version ($PYTHON_VERSION). Updating Pipfile..."
+            pipenv --python "$PYTHON_VERSION"
         else
-            echo "Package manager not found. You may need to install Python3 manually."
-            exit 1
+            echo "Pipfile already specifies Python $PYTHON_VERSION."
         fi
-    else
-        echo "Python3 is already installed."
     fi
 }
 
-# Ensure pip for Python3 is installed
-ensure_pip() {
-    echo "Checking for pip3..."
-    if ! command_exists pip3; then
-        echo "pip3 not found. Attempting to install..."
-        curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-        python3 get-pip.py --user
-        rm get-pip.py
-    else
-        echo "pip3 is already installed."
-    fi
-}
-
-# Install pre-commit using pip
+# Install pre-commit using Pipenv
 install_pre_commit() {
     echo "Installing pre-commit..."
-    pip3 install --user pre-commit
+    pipenv install pre-commit
 }
 
 # Setup pre-commit hooks from .pre-commit-config.yaml if it exists
 setup_pre_commit_hooks() {
     if [ -f .pre-commit-config.yaml ]; then
         echo "Setting up pre-commit hooks..."
-        pre-commit install
+        pipenv run pre-commit install
     else
         echo "No .pre-commit-config.yaml found. Skipping pre-commit hook setup."
     fi
@@ -88,12 +104,13 @@ setup_pre_commit_hooks() {
 main_setup() {
     install_rust
     install_rust_tools
-    install_python3
-    ensure_pip
+    install_pyenv
+    install_python
+    install_pipenv
+    create_or_update_pipfile
     install_pre_commit
     setup_pre_commit_hooks
     echo "Setup completed successfully."
 }
 
-# Run the main setup function
 main_setup
