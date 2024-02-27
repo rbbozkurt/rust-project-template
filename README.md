@@ -60,6 +60,19 @@ The script `setup.sh` configures the environment to use Rust version `1.74.0` by
 ```bash
 ./setup.sh 1.55.0
 ```
+### Python Version Configuration
+
+Similarly, the script is set up to configure the environment to use Python version `3.10` by default. If your project requires a different Python version, you can specify this by providing it as the second argument to the setup script. For instance, to set up Python version `3.9`, along with the default Rust version, you would run:
+
+```bash
+./setup.sh 1.74.0 3.9
+```
+Or, if you want to set up Python 3.9 with Rust 1.55.0, the command would be:
+
+```bash
+./setup.sh 1.55.0 3.9
+```
+These configurations allow for flexible environment setup to match the specific requirements of your project.
 
 ## Features
 
