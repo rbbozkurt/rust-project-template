@@ -3,7 +3,7 @@
 {
 	"name": "Rust",
 	"build": {
-		"dockerfile": "Dockerfile",
+		"dockerfile": "../Dockerfile",
 		"context": "..",
 		"args": {
 			// Use the VARIANT arg to pick a Debian OS version: buster, bullseye
