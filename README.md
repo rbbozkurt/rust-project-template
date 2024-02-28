@@ -1,4 +1,7 @@
+<img src="https://github.com/rbbozkurt/rust-project-template/assets/45459787/fe3f0cbf-1def-4747-bed2-6895dfa0b8d6" width="1000" height="800">
+
 # Rust Project Template
+
 
 Welcome to our Rust Project Template! This template is designed to make starting a new Rust project as easy as possible. It includes everything you need to get going quickly, including setup scripts, essential tools, and basic configuration files like README.md.template and LICENSE.template. The goal is to help you focus on writing your Rust code without worrying about the initial setup.
 
