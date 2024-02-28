@@ -58,21 +58,23 @@ For Codespaces:
 The script `setup.sh` configures the environment to use Rust version `1.74.0` by default. If you need to use a different Rust version for your project, you can easily specify this by running the setup script with the desired version number as an argument. For example, to set up Rust version `1.55.0`, you would use the following command:
 
 ```bash
-./setup.sh 1.55.0
+./setup.sh --rust 1.55.0
 ```
 ### Python Version Configuration
 
 Similarly, the script is set up to configure the environment to use Python version `3.10` by default. If your project requires a different Python version, you can specify this by providing it as the second argument to the setup script. For instance, to set up Python version `3.9`, along with the default Rust version, you would run:
 
 ```bash
-./setup.sh 1.74.0 3.9
+./setup.sh --python 3.9
 ```
-Or, if you want to set up Python 3.9 with Rust 1.55.0, the command would be:
+### Specifying Both Versions
+
+If you need to specify both Rust and Python versions, you can provide both `--rust` and `--python` flags with their respective version numbers. For example, to set up Rust version `1.55.0` and Python version `3.9`, the command would be:
 
 ```bash
-./setup.sh 1.55.0 3.9
+./setup.sh --rust 1.55.0 --python 3.9
 ```
-These configurations allow for flexible environment setup to match the specific requirements of your project.
+These named argument configurations provide a clear and flexible way to set up your environment according to the specific requirements of your project.
 
 ## Features
 
